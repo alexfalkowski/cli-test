@@ -2,21 +2,19 @@ package build
 
 import (
 	"fmt"
-	"os/exec"
 
+	"github.com/alexfalkowski/cli-test/internal/exec"
 	"github.com/spf13/cobra"
 )
 
 // New build command.
-func New() *cobra.Command {
+func New(runner exec.Runner) *cobra.Command {
 	build := &cobra.Command{
 		Use:   "build",
 		Short: "Build with bazel.",
 		Long:  "https://bazel.build/run/build",
 		RunE: func(c *cobra.Command, args []string) error {
-			cmd := exec.CommandContext(c.Context(), "bazel", "help", "build")
-
-			data, err := cmd.CombinedOutput()
+			data, err := runner.Run(c.Context(), "bazel help build")
 			if err != nil {
 				return err
 			}
