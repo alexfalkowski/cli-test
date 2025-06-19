@@ -13,7 +13,7 @@ func NewCommand() *Command {
 	return &Command{}
 }
 
-// CommandRunner uses os/exec.
+// Command uses os/exec.
 type Command struct{}
 
 // Run cmd and return the output, unless an error occurs.
