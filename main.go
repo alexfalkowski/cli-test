@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log/slog"
 	"os"
 
 	"github.com/alexfalkowski/cli-test/internal/cmd/build"
@@ -9,9 +10,12 @@ import (
 )
 
 func main() {
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+	slog.SetDefault(logger)
+
 	runner := exec.NewCommand()
 	root := root.New()
-	root.AddCommand(build.New(runner))
+	root.AddCommand(build.New(runner, logger))
 
 	if err := root.Execute(); err != nil {
 		os.Exit(1)
