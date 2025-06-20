@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/alexfalkowski/cli-test/internal/cmd/build"
-	"github.com/alexfalkowski/cli-test/internal/test"
+	"github.com/alexfalkowski/cli-test/internal/exec/test"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -21,7 +21,9 @@ func New(runner exec.Runner, logger *slog.Logger) *cobra.Command {
 				return err
 			}
 
-			logger.InfoContext(ctx, out)
+			if len(out) != 0 {
+				logger.InfoContext(ctx, out)
+			}
 
 			return nil
 		},
